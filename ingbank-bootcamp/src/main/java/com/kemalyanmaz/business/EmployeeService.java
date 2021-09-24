@@ -1,4 +1,4 @@
-package com.kemalyanmaz;
+package com.kemalyanmaz.business;
 
 import java.util.List;
 
@@ -20,5 +20,13 @@ public class EmployeeService {
 	
 	public List<Employee> getAll(){
 		return employeeRepository.findAll();
+	}
+	
+	public Employee getById(long id) {
+		return employeeRepository.findById(id).get();
+	}
+	
+	public Employee addEmployee(Employee employee) {
+		return employeeRepository.save(employee);
 	}
 }

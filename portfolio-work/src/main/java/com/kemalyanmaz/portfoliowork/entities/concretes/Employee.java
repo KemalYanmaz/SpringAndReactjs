@@ -1,15 +1,12 @@
-package com.kemalyanmaz.data.entities;
+package com.kemalyanmaz.portfoliowork.entities.concretes;
 
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +15,7 @@ public class Employee {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name="id")
 	private long id;
 	
 	@Column(name="first_name")
@@ -28,16 +25,19 @@ public class Employee {
 	private String lastName;
 	
 	@Column(name="department_id")
-	private long department;
+	private long departmentId;
 	
-	@Column(name="startedDate")
-	private Date startedDate;
+	@Column(name="joining_date")
+	private Date joiningDate;
+	
+	@Column(name="leaving_date")
+	private Date leavingDate;
 	
 	@Column(name="salary")
 	private double salary;
 	
 	@Column(name="graduation_id")
-	private long graduation;
+	private long graduationID;
 
 	public long getId() {
 		return id;
@@ -63,17 +63,28 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
-
-	public long getDepartment() {
-		return department;
+	public long getDepartmentId() {
+		return departmentId;
 	}
 
-	public Date getStartedDate() {
-		return startedDate;
+	public void setDepartmentId(long departmentId) {
+		this.departmentId = departmentId;
 	}
 
-	public void setStartedDate(Date startedDate) {
-		this.startedDate = startedDate;
+	public Date getJoiningDate() {
+		return joiningDate;
+	}
+
+	public void setJoiningDate(Date joiningDate) {
+		this.joiningDate = joiningDate;
+	}
+
+	public Date getLeavingDate() {
+		return leavingDate;
+	}
+
+	public void setLeavingDate(Date leavingDate) {
+		this.leavingDate = leavingDate;
 	}
 
 	public double getSalary() {
@@ -84,19 +95,18 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public long getGraduation() {
-		return graduation;
+	public long getGraduationID() {
+		return graduationID;
 	}
 
-	public void setGraduation(long graduation) {
-		this.graduation = graduation;
+	public void setGraduationID(long graduationID) {
+		this.graduationID = graduationID;
 	}
-
-	public void setDepartment(long department) {
-		this.department = department;
+	
+	public String getFullName() {
+		return this.firstName + " " + this.lastName;
 	}
-
-
+	
 	
 	
 }
