@@ -10,5 +10,6 @@ public interface CustomerService {
 	List<CustomerDto> getAll();
 	CustomerDto getById(long id);
 	Customer addCustomer(Customer customer);
+	boolean existsById(long id);
 	
 }

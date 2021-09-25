@@ -56,25 +56,40 @@ public class OfferManager implements OfferService{
 		offerDto.setTotalPrice(offer.getTotalPrice());
 		offerDto.setOfferDate(offer.getOfferDate());
 		
-		Employee employee = employeeDao.findById(offer.getEmployeeId()).get();
+		Employee employee = employeeDao.findById(offer.getEmployeeId()).orElse(new Employee());
 		offerDto.setEmployeeid(employee.getId());
 		offerDto.setEmployeeName(employee.getFullName());
 		
-		Customer customer = customerDao.findById(offer.getCustomerId()).get();
+		Customer customer = customerDao.findById(offer.getCustomerId()).orElse(new Customer());
 		offerDto.setCustomerId(customer.getId());
 		offerDto.setCustomerName(customer.getFullName());
 		offerDto.setCustomerPhone(customer.getPhoneNumber());
 		
-		Product product = productDao.findById(offer.getProductId()).get();
+		Product product = productDao.findById(offer.getProductId()).orElse(new Product());
 		offerDto.setProductId(product.getId());
 		offerDto.setProductName(product.getProductName());
 		offerDto.setProductPrice(product.getProductPrice());
 		
-		Currency currency = currencyDao.findById(offer.getCurrencyId()).get();
+		Currency currency = currencyDao.findById(offer.getCurrencyId()).orElse(new Currency());
 		offerDto.setCurrencyId(currency.getId());
 		offerDto.setCurrencyName(currency.getCurrencyName());
 		offerDto.setCurrencyValue(currency.getCurrencyValue());
 		
 		return offerDto;
+	}
+
+	@Override
+	public Offer addOffer(Offer offer) {
+		return offerDao.save(offer);
+	}
+
+	@Override
+	public OfferDto getById(long id) {
+		return offerToDto(offerDao.getById(id));
+	}
+
+	@Override
+	public boolean existsById(long id) {
+		return offerDao.existsById(id);
 	}
 }

@@ -61,7 +61,7 @@ public class CustomerManager implements CustomerService {
 
 	@Override
 	public CustomerDto getById(long id) {
-		return customerToDto(customerDao.findById(id).get());
+		return customerToDto(customerDao.findById(id).orElse(new Customer()));
 	}
 
 	private CustomerDto customerToDto(Customer customer) {
@@ -71,26 +71,26 @@ public class CustomerManager implements CustomerService {
 		customerDto.setLastName(customer.getLastName());
 		customerDto.setPhoneNumber(customer.getPhoneNumber());
 		
-		Address address = addressDao.findById(customer.getAddressId()).get();
+		Address address = addressDao.findById(customer.getAddressId()).orElse(new Address());
 		customerDto.setAddressId(customer.getAddressId());
 		customerDto.setAddressId(address.getId());
 		
-		City city = cityDao.findById(customerDto.getCityId()).get();
-		customerDto.setCityId(address.getCityId());
+		City city = cityDao.findById(address.getCityId()).orElse(new City());
+		customerDto.setCityId(city.getId());
 		customerDto.setCityName(city.getCityName());
 		customerDto.setDistrict(address.getDistrict());
 		customerDto.setNeighborhood(address.getNeigborhood());
 		customerDto.setDoorNo(address.getDoorNo());
 		customerDto.setFloor(address.getFloor());
 		
-		Tax tax = taxDao.findById(customerDto.getTaxId()).get();
-		customerDto.setTaxId(customer.getTaxId());
+		Tax tax = taxDao.findById(customer.getTaxId()).orElse(new Tax());
+		customerDto.setTaxId(tax.getId());
 		customerDto.setTaxNo(tax.getTaxNumber());
-		city = cityDao.findById(tax.getTaxCityId()).get();
+		city = cityDao.findById(tax.getTaxCityId()).orElse(new City());
 		customerDto.setTaxCityId(city.getId());
 		customerDto.setTaxCityName(city.getCityName());
 		
-		Sector sector = sectorDao.findById(customer.getSectorId()).get();
+		Sector sector = sectorDao.findById(customer.getSectorId()).orElse(new Sector());
 		customerDto.setSectorId(sector.getId());
 		customerDto.setSectorName(sector.getSectorName());
 		return customerDto;
@@ -99,6 +99,11 @@ public class CustomerManager implements CustomerService {
 	@Override
 	public Customer addCustomer(Customer customer) {
 		return customerDao.save(customer);
+	}
+
+	@Override
+	public boolean existsById(long id) {
+		return customerDao.existsById(id);
 	}
 	
 }

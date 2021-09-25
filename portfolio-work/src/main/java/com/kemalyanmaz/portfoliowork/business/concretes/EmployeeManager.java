@@ -53,7 +53,7 @@ public class EmployeeManager implements EmployeeService{
 	
 	@Override
 	public EmployeeDto getById(long id) {
-		return EmployeeToDto(employeeDao.findById(id).get());
+		return EmployeeToDto(employeeDao.findById(id).orElse(new Employee()));
 	}
 	
 	
@@ -64,16 +64,27 @@ public class EmployeeManager implements EmployeeService{
 		employeer.setLastName(employee.getLastName());
 		employeer.setSalary(employee.getSalary());
 		
-		Department department = departmentDao.findById(employee.getDepartmentId()).get();
+		Department department = departmentDao.findById(employee.getDepartmentId()).orElse(new Department());
 		employeer.setDepartmentId(department.getId());
 		employeer.setDepartmentName(department.getDepartmentName());
 		employeer.setDepartmentSummary(department.getDepartmentSummary());
 		
-		Graduation graduation = graduationDao.findById(employee.getGraduationID()).get();
+		Graduation graduation = graduationDao.findById(employee.getGraduationID()).orElse(new Graduation());
 		employeer.setGraduationId(graduation.getId());
 		employeer.setGraduationName(graduation.getGraduationName());
 		
 		return employeer;
+	}
+
+	@Override
+	public Employee addEmployee(Employee employee) {
+		employeeDao.save(employee);
+		return employee;
+	}
+
+	@Override
+	public boolean existsById(long id) {
+		return employeeDao.existsById(id);
 	}
 	
 	
