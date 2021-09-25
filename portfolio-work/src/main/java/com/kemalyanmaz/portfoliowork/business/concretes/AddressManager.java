@@ -54,7 +54,6 @@ public class AddressManager implements AddressService{
 		addressDto.setFloor(address.getFloor());
 		
 		City city = cityDao.findById(address.getCityId()).orElse(new City());
-		addressDto.setCityId(city.getId());
 		addressDto.setCityName(city.getCityName());
 		return addressDto;
 	}

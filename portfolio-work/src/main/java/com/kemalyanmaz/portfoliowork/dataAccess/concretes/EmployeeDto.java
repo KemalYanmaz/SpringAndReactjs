@@ -1,15 +1,16 @@
 package com.kemalyanmaz.portfoliowork.dataAccess.concretes;
 
+import java.util.Date;
+
 public class EmployeeDto {
 	
 	private long id;
 	private String firstName;
 	private String lastName;
-	private long departmentId;
 	private String departmentName;
 	private String departmentSummary;
 	private double salary;
-	private long graduationId;
+	private Date joiningDate;
 	private String graduationName;
 	
 	public long getId() {
@@ -30,12 +31,6 @@ public class EmployeeDto {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public long getDepartmentId() {
-		return departmentId;
-	}
-	public void setDepartmentId(long departmentId) {
-		this.departmentId = departmentId;
-	}
 	public String getDepartmentName() {
 		return departmentName;
 	}
@@ -54,17 +49,17 @@ public class EmployeeDto {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-	public long getGraduationId() {
-		return graduationId;
-	}
-	public void setGraduationId(long graduationId) {
-		this.graduationId = graduationId;
-	}
 	public String getGraduationName() {
 		return graduationName;
 	}
 	public void setGraduationName(String graduationName) {
 		this.graduationName = graduationName;
+	}
+	public Date getJoiningDate() {
+		return joiningDate;
+	}
+	public void setJoiningDate(Date joiningDate) {
+		this.joiningDate = joiningDate;
 	}
 	
 	

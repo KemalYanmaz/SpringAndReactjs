@@ -63,14 +63,13 @@ public class EmployeeManager implements EmployeeService{
 		employeer.setFirstName(employee.getFirstName());
 		employeer.setLastName(employee.getLastName());
 		employeer.setSalary(employee.getSalary());
+		employeer.setJoiningDate(employee.getJoiningDate());
 		
 		Department department = departmentDao.findById(employee.getDepartmentId()).orElse(new Department());
-		employeer.setDepartmentId(department.getId());
 		employeer.setDepartmentName(department.getDepartmentName());
 		employeer.setDepartmentSummary(department.getDepartmentSummary());
 		
 		Graduation graduation = graduationDao.findById(employee.getGraduationID()).orElse(new Graduation());
-		employeer.setGraduationId(graduation.getId());
 		employeer.setGraduationName(graduation.getGraduationName());
 		
 		return employeer;

@@ -72,9 +72,7 @@ public class CustomerManager implements CustomerService {
 		customerDto.setPhoneNumber(customer.getPhoneNumber());
 		
 		Address address = addressDao.findById(customer.getAddressId()).orElse(new Address());
-		customerDto.setAddressId(customer.getAddressId());
-		customerDto.setAddressId(address.getId());
-		
+	
 		City city = cityDao.findById(address.getCityId()).orElse(new City());
 		customerDto.setCityId(city.getId());
 		customerDto.setCityName(city.getCityName());
@@ -84,14 +82,11 @@ public class CustomerManager implements CustomerService {
 		customerDto.setFloor(address.getFloor());
 		
 		Tax tax = taxDao.findById(customer.getTaxId()).orElse(new Tax());
-		customerDto.setTaxId(tax.getId());
 		customerDto.setTaxNo(tax.getTaxNumber());
 		city = cityDao.findById(tax.getTaxCityId()).orElse(new City());
-		customerDto.setTaxCityId(city.getId());
 		customerDto.setTaxCityName(city.getCityName());
 		
 		Sector sector = sectorDao.findById(customer.getSectorId()).orElse(new Sector());
-		customerDto.setSectorId(sector.getId());
 		customerDto.setSectorName(sector.getSectorName());
 		return customerDto;
 	}

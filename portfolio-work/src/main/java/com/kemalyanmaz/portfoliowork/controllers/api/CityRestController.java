@@ -1,4 +1,4 @@
-package com.kemalyanmaz.portfoliowork.api.controllers;
+package com.kemalyanmaz.portfoliowork.controllers.api;
 
 import java.util.List;
 
@@ -18,7 +18,8 @@ import com.kemalyanmaz.portfoliowork.entities.concretes.City;
 @RestController
 @RequestMapping("/api/cities")
 public class CityRestController {
-private final CityService cityService;
+
+	private CityService cityService;
 	
 	public CityRestController(CityService cityService) {
 		this.cityService = cityService;

@@ -5,16 +5,12 @@ import java.sql.Date;
 public class OfferDto {
 
 	private long id;
-	private long employeeid;
 	private String employeeName;
-	private long customerId;
 	private String customerName;
 	private String customerPhone;
-	private long productId;
 	private String productName;
 	private double productPrice;
 	private double totalPrice;
-	private long currencyId;
 	private String currencyName;
 	private double currencyValue;
 	private Date offerDate;
@@ -25,23 +21,11 @@ public class OfferDto {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public long getEmployeeid() {
-		return employeeid;
-	}
-	public void setEmployeeid(long employeeid) {
-		this.employeeid = employeeid;
-	}
 	public String getEmployeeName() {
 		return employeeName;
 	}
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
-	}
-	public long getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
 	}
 	public String getCustomerName() {
 		return customerName;
@@ -54,12 +38,6 @@ public class OfferDto {
 	}
 	public void setCustomerPhone(String customerPhone) {
 		this.customerPhone = customerPhone;
-	}
-	public long getProductId() {
-		return productId;
-	}
-	public void setProductId(long productId) {
-		this.productId = productId;
 	}
 	public String getProductName() {
 		return productName;
@@ -78,12 +56,6 @@ public class OfferDto {
 	}
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
-	}
-	public long getCurrencyId() {
-		return currencyId;
-	}
-	public void setCurrencyId(long currencyId) {
-		this.currencyId = currencyId;
 	}
 	public String getCurrencyName() {
 		return currencyName;

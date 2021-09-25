@@ -1,4 +1,4 @@
-package com.kemalyanmaz.portfoliowork.api.controllers;
+package com.kemalyanmaz.portfoliowork.controllers.api;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ public class AddressRestController {
 	private final AddressService addressService;
 	
 	public AddressRestController(AddressService addressService) {
+		
 		this.addressService = addressService;
 	}
 	

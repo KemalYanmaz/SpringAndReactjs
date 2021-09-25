@@ -5,7 +5,6 @@ public class CustomerDto {
 	private long id;
 	private String firstName;
 	private String lastName;
-	private long addressId;
 	private long cityId;
 	private String cityName;
 	private String district;
@@ -13,11 +12,8 @@ public class CustomerDto {
 	private int doorNo;
 	private int floor;
 	private String phoneNumber;
-	private long taxId;
 	private String taxNo;
-	private long taxCityId;
 	private String taxCityName; 
-	private long sectorId;
 	private String sectorName;
 	
 	public long getId() {
@@ -38,12 +34,6 @@ public class CustomerDto {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	public long getAddressId() {
-		return addressId;
-	}
-	public void setAddressId(long addressId) {
-		this.addressId = addressId;
 	}
 	public long getCityId() {
 		return cityId;
@@ -87,35 +77,17 @@ public class CustomerDto {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public long getTaxId() {
-		return taxId;
-	}
-	public void setTaxId(long taxId) {
-		this.taxId = taxId;
-	}
 	public String getTaxNo() {
 		return taxNo;
 	}
 	public void setTaxNo(String taxNo) {
 		this.taxNo = taxNo;
 	}
-	public long getTaxCityId() {
-		return taxCityId;
-	}
-	public void setTaxCityId(long taxCityId) {
-		this.taxCityId = taxCityId;
-	}
 	public String getTaxCityName() {
 		return taxCityName;
 	}
 	public void setTaxCityName(String taxCityName) {
 		this.taxCityName = taxCityName;
-	}
-	public long getSectorId() {
-		return sectorId;
-	}
-	public void setSectorId(long sectorId) {
-		this.sectorId = sectorId;
 	}
 	public String getSectorName() {
 		return sectorName;

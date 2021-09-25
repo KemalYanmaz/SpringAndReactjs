@@ -1,4 +1,4 @@
-package com.kemalyanmaz.portfoliowork.api.controllers;
+package com.kemalyanmaz.portfoliowork.controllers.api;
 
 import java.util.List;
 
