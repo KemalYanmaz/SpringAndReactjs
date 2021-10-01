@@ -8,14 +8,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kemalyanmaz.portfoliowork.business.abstracts.AddressService;
 import com.kemalyanmaz.portfoliowork.business.abstracts.CustomerService;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.AddressDao;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.CityDao;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.CustomerDao;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.SectorDao;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.TaxDao;
+import com.kemalyanmaz.portfoliowork.dataAccess.concretes.AddressDto;
 import com.kemalyanmaz.portfoliowork.dataAccess.concretes.CustomerDto;
-import com.kemalyanmaz.portfoliowork.entities.concretes.Address;
 import com.kemalyanmaz.portfoliowork.entities.concretes.City;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Customer;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Sector;
@@ -25,7 +25,7 @@ import com.kemalyanmaz.portfoliowork.entities.concretes.Tax;
 public class CustomerManager implements CustomerService {
 
 	private CustomerDao customerDao;
-	private AddressDao addressDao;
+	private AddressService addressService;
 	private CityDao cityDao;
 	private TaxDao taxDao;
 	private SectorDao sectorDao;
@@ -35,10 +35,10 @@ public class CustomerManager implements CustomerService {
 	}
 	
 	@Autowired
-	public CustomerManager(CustomerDao customerDao, AddressDao addressDao, TaxDao taxDao, SectorDao sectorDao, CityDao cityDao) {
+	public CustomerManager(CustomerDao customerDao, AddressService addressService, TaxDao taxDao, SectorDao sectorDao, CityDao cityDao) {
 		super();
 		this.customerDao = customerDao;
-		this.addressDao = addressDao;
+		this.addressService = addressService;
 		this.taxDao = taxDao;
 		this.sectorDao = sectorDao;
 		this.cityDao = cityDao;
@@ -71,19 +71,11 @@ public class CustomerManager implements CustomerService {
 		customerDto.setLastName(customer.getLastName());
 		customerDto.setPhoneNumber(customer.getPhoneNumber());
 		
-		Address address = addressDao.findById(customer.getAddressId()).orElse(new Address());
-	
-		City city = cityDao.findById(address.getCityId()).orElse(new City());
-		customerDto.setCityId(city.getId());
-		customerDto.setCityName(city.getCityName());
-		customerDto.setDistrict(address.getDistrict());
-		customerDto.setNeighborhood(address.getNeigborhood());
-		customerDto.setDoorNo(address.getDoorNo());
-		customerDto.setFloor(address.getFloor());
+		AddressDto address = addressService.getAddressDtoById(customer.getAddressId());
 		
 		Tax tax = taxDao.findById(customer.getTaxId()).orElse(new Tax());
 		customerDto.setTaxNo(tax.getTaxNumber());
-		city = cityDao.findById(tax.getTaxCityId()).orElse(new City());
+		City city = cityDao.findById(tax.getTaxCityId()).orElse(new City());
 		customerDto.setTaxCityName(city.getCityName());
 		
 		Sector sector = sectorDao.findById(customer.getSectorId()).orElse(new Sector());

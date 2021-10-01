@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kemalyanmaz.portfoliowork.business.abstracts.CityService;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.CityDao;
+import com.kemalyanmaz.portfoliowork.dataAccess.concretes.CityDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.City;
 
 @Service
@@ -28,8 +29,8 @@ public class CityManager implements CityService{
 	}
 
 	@Override
-	public City getCityById(long id) {
-		return cityDao.findById(id).orElse(new City());
+	public CityDto getCityById(long id) {
+		return cityToDto(cityDao.findById(id).orElse(new City()));
 	}
 
 	@Override
@@ -40,6 +41,12 @@ public class CityManager implements CityService{
 	@Override
 	public boolean existsById(long id) {
 		return cityDao.existsById(id);
+	}
+	
+	private CityDto cityToDto(City city) {
+		CityDto cityDto = new CityDto();
+		cityDto.setCityName(city.getCityName());
+		return cityDto;
 	}
 	
 	

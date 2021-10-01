@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kemalyanmaz.portfoliowork.business.abstracts.CityService;
+import com.kemalyanmaz.portfoliowork.dataAccess.concretes.CityDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.City;
 
 @RestController
@@ -36,7 +37,7 @@ public class CityRestController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<City> getById(@PathVariable("id") long id){
+	public ResponseEntity<CityDto> getById(@PathVariable("id") long id){
 		return ResponseEntity.status(HttpStatus.OK).body(cityService.getCityById(id));
 	}
 	

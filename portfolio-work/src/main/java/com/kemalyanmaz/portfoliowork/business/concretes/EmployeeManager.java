@@ -8,21 +8,21 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kemalyanmaz.portfoliowork.business.abstracts.DepartmentService;
 import com.kemalyanmaz.portfoliowork.business.abstracts.EmployeeService;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.DepartmentDao;
+import com.kemalyanmaz.portfoliowork.business.abstracts.GraduationService;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.EmployeeDao;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.GraduationDao;
+import com.kemalyanmaz.portfoliowork.dataAccess.concretes.DepartmentDto;
 import com.kemalyanmaz.portfoliowork.dataAccess.concretes.EmployeeDto;
-import com.kemalyanmaz.portfoliowork.entities.concretes.Department;
+import com.kemalyanmaz.portfoliowork.dataAccess.concretes.GraduationDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Employee;
-import com.kemalyanmaz.portfoliowork.entities.concretes.Graduation;
 
 @Service
 public class EmployeeManager implements EmployeeService{
 
 	private EmployeeDao employeeDao;
-	private DepartmentDao departmentDao;
-	private GraduationDao graduationDao;
+	private DepartmentService departmentService;
+	private GraduationService graduationService;
 	
 	
 	public EmployeeManager() {
@@ -30,11 +30,11 @@ public class EmployeeManager implements EmployeeService{
 	}
 	
 	@Autowired
-	public EmployeeManager(EmployeeDao employeeDao,DepartmentDao departmentDao, GraduationDao graduationDao) {
+	public EmployeeManager(EmployeeDao employeeDao,DepartmentService departmentService, GraduationService graduationService) {
 		super();
 		this.employeeDao = employeeDao;
-		this.departmentDao = departmentDao;
-		this.graduationDao = graduationDao;
+		this.departmentService = departmentService;
+		this.graduationService = graduationService;
 	}
 	@Override
 	public List<EmployeeDto> getAll() {
@@ -65,12 +65,11 @@ public class EmployeeManager implements EmployeeService{
 		employeer.setSalary(employee.getSalary());
 		employeer.setJoiningDate(employee.getJoiningDate());
 		
-		Department department = departmentDao.findById(employee.getDepartmentId()).orElse(new Department());
-		employeer.setDepartmentName(department.getDepartmentName());
-		employeer.setDepartmentSummary(department.getDepartmentSummary());
+		DepartmentDto departmentDto = departmentService.getById(employee.getDepartmentId());
+		employeer.setDepartment(departmentDto);
 		
-		Graduation graduation = graduationDao.findById(employee.getGraduationID()).orElse(new Graduation());
-		employeer.setGraduationName(graduation.getGraduationName());
+		GraduationDto graduation = graduationService.getById(employee.getGraduationID());
+		employeer.setGraduation(graduation);
 		
 		return employeer;
 	}

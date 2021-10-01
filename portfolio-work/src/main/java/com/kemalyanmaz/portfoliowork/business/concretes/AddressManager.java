@@ -9,24 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kemalyanmaz.portfoliowork.business.abstracts.AddressService;
+import com.kemalyanmaz.portfoliowork.business.abstracts.CityService;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.AddressDao;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.CityDao;
 import com.kemalyanmaz.portfoliowork.dataAccess.concretes.AddressDto;
+import com.kemalyanmaz.portfoliowork.dataAccess.concretes.CityDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Address;
-import com.kemalyanmaz.portfoliowork.entities.concretes.City;
 
 @Service
 public class AddressManager implements AddressService{
 
 	private AddressDao addressDao;
-	private CityDao cityDao;
+	private CityService cityService;
 	
 	
 	@Autowired
-	public AddressManager(AddressDao addressDao, CityDao cityDao) {
+	public AddressManager(AddressDao addressDao, CityService cityService) {
 		super();
 		this.addressDao = addressDao;
-		this.cityDao = cityDao;
+		this.cityService = cityService;
 	}
 
 
@@ -52,9 +52,7 @@ public class AddressManager implements AddressService{
 		addressDto.setNeighborhood(address.getNeigborhood());
 		addressDto.setDoorNo(address.getDoorNo());
 		addressDto.setFloor(address.getFloor());
-		
-		City city = cityDao.findById(address.getCityId()).orElse(new City());
-		addressDto.setCityName(city.getCityName());
+		addressDto.setCity(cityService.getCityById(address.getCityId()));
 		return addressDto;
 	}
 

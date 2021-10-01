@@ -3,7 +3,7 @@ package com.kemalyanmaz.portfoliowork.dataAccess.concretes;
 public class AddressDto {
 	
 	private long id;
-	private String cityName;
+	private CityDto city;
 	private String district;
 	private String neighborhood;
 	private int doorNo;
@@ -15,11 +15,12 @@ public class AddressDto {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getCityName() {
-		return cityName;
+	
+	public CityDto getCity() {
+		return city;
 	}
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
+	public void setCity(CityDto city) {
+		this.city = city;
 	}
 	public String getDistrict() {
 		return district;

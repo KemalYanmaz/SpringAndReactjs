@@ -5,43 +5,31 @@ import java.util.Date;
 public class EmployeeDto {
 	
 	private long id;
-	private String firstName;
-	private String lastName;
-	private String departmentName;
-	private String departmentSummary;
+	private String first_name;
+	private String last_name;
+	private DepartmentDto department;
 	private double salary;
-	private Date joiningDate;
-	private String graduationName;
+	private Date joining_date;
+	private GraduationDto graduation;
+	private Date leaving_date;
 	
+	public GraduationDto getGraduation() {
+		return graduation;
+	}
+	public void setGraduation(GraduationDto graduation) {
+		this.graduation = graduation;
+	}
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
+	public DepartmentDto getDepartment() {
+		return department;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getDepartmentName() {
-		return departmentName;
-	}
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
-	}
-	public String getDepartmentSummary() {
-		return departmentSummary;
-	}
-	public void setDepartmentSummary(String departmentSummary) {
-		this.departmentSummary = departmentSummary;
+	public void setDepartment(DepartmentDto department) {
+		this.department = department;
 	}
 	public double getSalary() {
 		return salary;
@@ -49,17 +37,29 @@ public class EmployeeDto {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-	public String getGraduationName() {
-		return graduationName;
+	public String getFirstName() {
+		return first_name;
 	}
-	public void setGraduationName(String graduationName) {
-		this.graduationName = graduationName;
+	public void setFirstName(String first_name) {
+		this.first_name = first_name;
+	}
+	public String getLastName() {
+		return last_name;
+	}
+	public void setLastName(String last_name) {
+		this.last_name = last_name;
 	}
 	public Date getJoiningDate() {
-		return joiningDate;
+		return joining_date;
 	}
-	public void setJoiningDate(Date joiningDate) {
-		this.joiningDate = joiningDate;
+	public void setJoiningDate(Date joining_date) {
+		this.joining_date = joining_date;
+	}
+	public Date getLeavingDate() {
+		return leaving_date;
+	}
+	public void setLeavingDate(Date leaving_date) {
+		this.leaving_date = leaving_date;
 	}
 	
 	
