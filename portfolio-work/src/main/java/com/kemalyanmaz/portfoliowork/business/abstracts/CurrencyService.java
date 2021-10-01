@@ -7,4 +7,6 @@ import com.kemalyanmaz.portfoliowork.dataAccess.concretes.CurrencyDto;
 public interface CurrencyService {
 
 	List<CurrencyDto> getAll();
+	
+	CurrencyDto getById(long id);
 }

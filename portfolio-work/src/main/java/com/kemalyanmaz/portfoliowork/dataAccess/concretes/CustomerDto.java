@@ -1,5 +1,7 @@
 package com.kemalyanmaz.portfoliowork.dataAccess.concretes;
 
+import com.kemalyanmaz.portfoliowork.entities.concretes.Sector;
+
 public class CustomerDto {
 	
 	private long id;
@@ -7,9 +9,8 @@ public class CustomerDto {
 	private String lastName;
 	private AddressDto address;
 	private String phoneNumber;
-	private String taxNo;
-	private String taxCityName; 
-	private String sectorName;
+	private TaxDto tax;
+	private SectorDto sector;
 	
 	public long getId() {
 		return id;
@@ -43,24 +44,20 @@ public class CustomerDto {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public String getTaxNo() {
-		return taxNo;
+	
+	public TaxDto getTax() {
+		return tax;
 	}
-	public void setTaxNo(String taxNo) {
-		this.taxNo = taxNo;
+	public void setTax(TaxDto tax) {
+		this.tax = tax;
 	}
-	public String getTaxCityName() {
-		return taxCityName;
+	public SectorDto getSector() {
+		return sector;
 	}
-	public void setTaxCityName(String taxCityName) {
-		this.taxCityName = taxCityName;
+	public void setSector(SectorDto sector) {
+		this.sector = sector;
 	}
-	public String getSectorName() {
-		return sectorName;
-	}
-	public void setSectorName(String sectorName) {
-		this.sectorName = sectorName;
-	}
+
 	
 	
 }

@@ -2,20 +2,12 @@ package com.kemalyanmaz.portfoliowork.dataAccess.concretes;
 
 public class AddressDto {
 	
-	private long id;
 	private CityDto city;
 	private String district;
 	private String neighborhood;
 	private int doorNo;
 	private int floor;
-	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	
+		
 	public CityDto getCity() {
 		return city;
 	}

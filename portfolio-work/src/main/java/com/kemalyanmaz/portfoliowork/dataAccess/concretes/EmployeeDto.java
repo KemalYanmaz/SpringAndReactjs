@@ -61,10 +61,4 @@ public class EmployeeDto {
 	public void setLeavingDate(Date leaving_date) {
 		this.leaving_date = leaving_date;
 	}
-	
-	
-	
-
-	
-	
 }

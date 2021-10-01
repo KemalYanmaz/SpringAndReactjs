@@ -1,4 +1,4 @@
-package com.kemalyanmaz.portfoliowork.config;
+/*package com.kemalyanmaz.portfoliowork.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -30,3 +30,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.withUser("user").password("password").roles("USER");
 	}
 }
+*/

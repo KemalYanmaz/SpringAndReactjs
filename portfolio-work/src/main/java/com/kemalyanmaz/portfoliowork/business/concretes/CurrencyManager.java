@@ -42,5 +42,10 @@ public class CurrencyManager implements CurrencyService{
 		currencyDto.setCurrencyValue(currency.getCurrencyValue());
 		return currencyDto;
 	}
+
+	@Override
+	public CurrencyDto getById(long id) {
+		return currencyToDto(currencyDao.findById(id).orElse(new Currency()));
+	}
 	
 }

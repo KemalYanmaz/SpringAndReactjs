@@ -17,7 +17,7 @@ import com.kemalyanmaz.portfoliowork.dataAccess.concretes.CityDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.City;
 
 @RestController
-@RequestMapping("/api/cities")
+@RequestMapping(path="/api/cities")
 public class CityRestController {
 
 	private CityService cityService;

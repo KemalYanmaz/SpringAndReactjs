@@ -9,39 +9,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kemalyanmaz.portfoliowork.business.abstracts.AddressService;
+import com.kemalyanmaz.portfoliowork.business.abstracts.CityService;
 import com.kemalyanmaz.portfoliowork.business.abstracts.CustomerService;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.CityDao;
+import com.kemalyanmaz.portfoliowork.business.abstracts.SectorService;
+import com.kemalyanmaz.portfoliowork.business.abstracts.TaxService;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.CustomerDao;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.SectorDao;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.TaxDao;
 import com.kemalyanmaz.portfoliowork.dataAccess.concretes.AddressDto;
 import com.kemalyanmaz.portfoliowork.dataAccess.concretes.CustomerDto;
-import com.kemalyanmaz.portfoliowork.entities.concretes.City;
+import com.kemalyanmaz.portfoliowork.dataAccess.concretes.SectorDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Customer;
-import com.kemalyanmaz.portfoliowork.entities.concretes.Sector;
-import com.kemalyanmaz.portfoliowork.entities.concretes.Tax;
 
 @Service
 public class CustomerManager implements CustomerService {
 
 	private CustomerDao customerDao;
 	private AddressService addressService;
-	private CityDao cityDao;
-	private TaxDao taxDao;
-	private SectorDao sectorDao;
+	private TaxService taxService;
+	private SectorService sectorService;
 	
 	public CustomerManager() {
 		
 	}
 	
 	@Autowired
-	public CustomerManager(CustomerDao customerDao, AddressService addressService, TaxDao taxDao, SectorDao sectorDao, CityDao cityDao) {
+	public CustomerManager(CustomerDao customerDao, AddressService addressService, TaxService taxService, SectorService sectorService) {
 		super();
 		this.customerDao = customerDao;
 		this.addressService = addressService;
-		this.taxDao = taxDao;
-		this.sectorDao = sectorDao;
-		this.cityDao = cityDao;
+		this.taxService = taxService;
+		this.sectorService = sectorService;
 	}
 
 
@@ -71,15 +67,12 @@ public class CustomerManager implements CustomerService {
 		customerDto.setLastName(customer.getLastName());
 		customerDto.setPhoneNumber(customer.getPhoneNumber());
 		
-		AddressDto address = addressService.getAddressDtoById(customer.getAddressId());
+		customerDto.setAddress(addressService.getAddressDtoById(customer.getAddressId()));
 		
-		Tax tax = taxDao.findById(customer.getTaxId()).orElse(new Tax());
-		customerDto.setTaxNo(tax.getTaxNumber());
-		City city = cityDao.findById(tax.getTaxCityId()).orElse(new City());
-		customerDto.setTaxCityName(city.getCityName());
+		customerDto.setTax(taxService.getById(customer.getTaxId()));
 		
-		Sector sector = sectorDao.findById(customer.getSectorId()).orElse(new Sector());
-		customerDto.setSectorName(sector.getSectorName());
+		customerDto.setSector(sectorService.getById(customer.getSectorId()));
+		
 		return customerDto;
 	}
 

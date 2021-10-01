@@ -12,7 +12,7 @@ import com.kemalyanmaz.portfoliowork.business.abstracts.CurrencyService;
 import com.kemalyanmaz.portfoliowork.dataAccess.concretes.CurrencyDto;
 
 @RestController
-@RequestMapping(path="api/currencies")
+@RequestMapping(path="/api/currencies")
 public class CurrencyRestController {
 
 	private CurrencyService currencyService;

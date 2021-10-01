@@ -5,14 +5,11 @@ import java.sql.Date;
 public class OfferDto {
 
 	private long id;
-	private String employeeName;
-	private String customerName;
-	private String customerPhone;
-	private String productName;
-	private double productPrice;
+	private EmployeeDto employee;
+	private CustomerDto customer;
+	private ProductDto product;
 	private double totalPrice;
-	private String currencyName;
-	private double currencyValue;
+	private CurrencyDto currency;
 	private Date offerDate;
 	
 	public long getId() {
@@ -21,35 +18,24 @@ public class OfferDto {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getEmployeeName() {
-		return employeeName;
+	
+	public EmployeeDto getEmployee() {
+		return employee;
 	}
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
+	public void setEmployee(EmployeeDto employee) {
+		this.employee = employee;
 	}
-	public String getCustomerName() {
-		return customerName;
+	public CustomerDto getCustomer() {
+		return customer;
 	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setCustomer(CustomerDto customer) {
+		this.customer = customer;
 	}
-	public String getCustomerPhone() {
-		return customerPhone;
+	public ProductDto getProduct() {
+		return product;
 	}
-	public void setCustomerPhone(String customerPhone) {
-		this.customerPhone = customerPhone;
-	}
-	public String getProductName() {
-		return productName;
-	}
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-	public double getProductPrice() {
-		return productPrice;
-	}
-	public void setProductPrice(double productPrice) {
-		this.productPrice = productPrice;
+	public void setProduct(ProductDto product) {
+		this.product = product;
 	}
 	public double getTotalPrice() {
 		return totalPrice;
@@ -57,17 +43,11 @@ public class OfferDto {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	public String getCurrencyName() {
-		return currencyName;
+	public CurrencyDto getCurrency() {
+		return currency;
 	}
-	public void setCurrencyName(String currencyName) {
-		this.currencyName = currencyName;
-	}
-	public double getCurrencyValue() {
-		return currencyValue;
-	}
-	public void setCurrencyValue(double currencyValue) {
-		this.currencyValue = currencyValue;
+	public void setCurrency(CurrencyDto currency) {
+		this.currency = currency;
 	}
 	public Date getOfferDate() {
 		return offerDate;

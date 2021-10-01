@@ -47,7 +47,6 @@ public class AddressManager implements AddressService{
 	
 	private AddressDto addressToDto(Address address) {
 		AddressDto addressDto = new AddressDto();
-		addressDto.setId(address.getId());
 		addressDto.setDistrict(address.getDistrict());
 		addressDto.setNeighborhood(address.getNeigborhood());
 		addressDto.setDoorNo(address.getDoorNo());

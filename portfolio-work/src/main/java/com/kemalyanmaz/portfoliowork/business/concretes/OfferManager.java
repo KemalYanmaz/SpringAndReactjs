@@ -8,12 +8,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kemalyanmaz.portfoliowork.business.abstracts.CurrencyService;
+import com.kemalyanmaz.portfoliowork.business.abstracts.CustomerService;
+import com.kemalyanmaz.portfoliowork.business.abstracts.EmployeeService;
 import com.kemalyanmaz.portfoliowork.business.abstracts.OfferService;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.CurrencyDao;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.CustomerDao;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.EmployeeDao;
+import com.kemalyanmaz.portfoliowork.business.abstracts.ProductService;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.OfferDao;
-import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.ProductDao;
 import com.kemalyanmaz.portfoliowork.dataAccess.concretes.OfferDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Currency;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Customer;
@@ -25,16 +25,23 @@ import com.kemalyanmaz.portfoliowork.entities.concretes.Product;
 public class OfferManager implements OfferService{
 
 	private OfferDao offerDao;
-	private EmployeeDao employeeDao;
-	private CustomerDao customerDao;
-	private ProductDao productDao;
-	private CurrencyDao currencyDao;
+	private EmployeeService employeeService;
+	private CustomerService customerService;
+	private ProductService productService;
+	private CurrencyService currencyService;
+	
 	
 	@Autowired
-	public OfferManager(OfferDao offerDao) {
+	public OfferManager(OfferDao offerDao, EmployeeService employeeService, CustomerService customerService,
+			ProductService productService, CurrencyService currencyService) {
+		super();
 		this.offerDao = offerDao;
+		this.employeeService = employeeService;
+		this.customerService = customerService;
+		this.productService = productService;
+		this.currencyService = currencyService;
 	}
-	
+
 	@Override
 	public List<OfferDto> getAllOffers() {
 		Map<Long,OfferDto> offerMap = new HashMap<>();
@@ -56,21 +63,14 @@ public class OfferManager implements OfferService{
 		offerDto.setTotalPrice(offer.getTotalPrice());
 		offerDto.setOfferDate(offer.getOfferDate());
 		
-		Employee employee = employeeDao.findById(offer.getEmployeeId()).orElse(new Employee());
-		offerDto.setEmployeeName(employee.getFullName());
+		offerDto.setEmployee(employeeService.getById(offer.getEmployeeId()));
 		
-		Customer customer = customerDao.findById(offer.getCustomerId()).orElse(new Customer());
-		offerDto.setCustomerName(customer.getFullName());
-		offerDto.setCustomerPhone(customer.getPhoneNumber());
+		offerDto.setCustomer(customerService.getById(offer.getCustomerId()));
 		
-		Product product = productDao.findById(offer.getProductId()).orElse(new Product());
-		offerDto.setProductName(product.getProductName());
-		offerDto.setProductPrice(product.getProductPrice());
+		offerDto.setProduct(productService.getById(offer.getProductId()));
 		
-		Currency currency = currencyDao.findById(offer.getCurrencyId()).orElse(new Currency());
-		offerDto.setCurrencyName(currency.getCurrencyName());
-		offerDto.setCurrencyValue(currency.getCurrencyValue());
-		
+		offerDto.setCurrency(currencyService.getById(offer.getCurrencyId()));
+	
 		return offerDto;
 	}
 

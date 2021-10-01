@@ -17,7 +17,7 @@ import com.kemalyanmaz.portfoliowork.dataAccess.concretes.OfferDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Offer;
 
 @RestController
-@RequestMapping("/api/offers")
+@RequestMapping(path="/api/offers")
 public class OfferRestController {
 	
 	private final OfferService offerService;

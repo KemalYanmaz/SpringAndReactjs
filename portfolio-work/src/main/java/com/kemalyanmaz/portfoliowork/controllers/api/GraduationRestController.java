@@ -11,7 +11,7 @@ import com.kemalyanmaz.portfoliowork.business.abstracts.GraduationService;
 import com.kemalyanmaz.portfoliowork.dataAccess.concretes.GraduationDto;
 
 @RestController
-@RequestMapping("api/graduations")
+@RequestMapping(path="api/graduations")
 public class GraduationRestController {
 
 	private GraduationService graduationService;

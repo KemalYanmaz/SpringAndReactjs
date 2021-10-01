@@ -17,7 +17,7 @@ import com.kemalyanmaz.portfoliowork.dataAccess.concretes.AddressDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Address;
 
 @RestController
-@RequestMapping("/api/addresses")
+@RequestMapping(path="/api/addresses")
 public class AddressRestController {
 
 	private final AddressService addressService;

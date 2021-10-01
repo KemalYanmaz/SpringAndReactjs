@@ -17,7 +17,7 @@ import com.kemalyanmaz.portfoliowork.dataAccess.concretes.EmployeeDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Employee;
 
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping(path="/api/employees")
 public class EmployeeRestController {
 
 	private final EmployeeService employeeService;
