@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ import com.kemalyanmaz.portfoliowork.entities.concretes.Employee;
 @Service
 public class EmployeeManager implements EmployeeService{
 
+	private final static Logger LOGGER = LoggerFactory.getLogger(EmployeeManager.class);
 	private EmployeeDao employeeDao;
 	private DepartmentService departmentService;
 	private GraduationService graduationService;
@@ -53,6 +56,8 @@ public class EmployeeManager implements EmployeeService{
 	
 	@Override
 	public EmployeeDto getById(long id) {
+		LOGGER.info(id+" ID'li çalışan çağırıldı");
+		LOGGER.debug(id+" ID'li çalışan çağırıldı");
 		return EmployeeToDto(employeeDao.findById(id).orElse(new Employee()));
 	}
 	
