@@ -12,7 +12,6 @@ import com.kemalyanmaz.portfoliowork.business.abstracts.AddressService;
 import com.kemalyanmaz.portfoliowork.business.abstracts.CityService;
 import com.kemalyanmaz.portfoliowork.dataAccess.abstracts.AddressDao;
 import com.kemalyanmaz.portfoliowork.dataAccess.concretes.AddressDto;
-import com.kemalyanmaz.portfoliowork.dataAccess.concretes.CityDto;
 import com.kemalyanmaz.portfoliowork.entities.concretes.Address;
 
 @Service
@@ -28,7 +27,6 @@ public class AddressManager implements AddressService{
 		this.addressDao = addressDao;
 		this.cityService = cityService;
 	}
-
 
 	@Override
 	public List<AddressDto> getAll() {
