@@ -1,8 +1,8 @@
-![](Ekran Resmi 2021-10-18 17.09.16.png)
+![](ss1.png)
 
-![](Ekran Resmi 2021-10-18 17.08.28.png)
+![](ss2.png)
 
-![](Ekran Resmi 2021-10-18 17.08.43.png)
+![](ss3.png)
 
 
 
